@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 app.use(cors())
 
-var serviceAccount = require("./firebaseConfig/vulenteer-fullstack-firebase-adminsdk-fbsvc-2c425f0b17.json");
+var serviceAccount = require(path.resolve(process.env.FIREBASE_CONFIG_PATH));
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
