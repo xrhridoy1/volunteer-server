@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 app.use(cors())
 
-const serviceAccountPath = path.resolve(process.env.FIREBASE_CONFIG_PATH);
+const serviceAccountPath = path.resolve(__dirname, process.env.FIREBASE_CONFIG_PATH);
 const serviceAccount = require(serviceAccountPath);
 
 admin.initializeApp({
