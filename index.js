@@ -6,6 +6,7 @@ const cors = require('cors');
 const port = 5000;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config()
+const path = require('path');
 
 
 const app = express();
@@ -13,10 +14,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 app.use(cors())
 
-var serviceAccount = require(path.resolve(process.env.FIREBASE_CONFIG_PATH));
+const serviceAccountPath = path.resolve(process.env.FIREBASE_CONFIG_PATH);
+const serviceAccount = require(serviceAccountPath);
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount)
 });
 const uri = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_USER_PASS}@newcluster.blyinzn.mongodb.net/?retryWrites=true&w=majority&appName=newCluster`;
 
